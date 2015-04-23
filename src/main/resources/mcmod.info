@@ -1,0 +1,16 @@
+[
+{
+  "modid": "AdventureFramework",
+  "name": "Adventure Framework",
+  "description": "A set of tools to assist in creating complex RPG rules in minecraft.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Sinistralis777"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
