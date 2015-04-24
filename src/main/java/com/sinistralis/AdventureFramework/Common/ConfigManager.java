@@ -9,29 +9,48 @@ import java.util.Map;
 public class ConfigManager
 {
     private Map<String, Configuration> configFiles = new HashMap<>();
-    private String rootDirectory;
+    private File rootDirectory;
 
-    public ConfigManager(String rootDirectory)
+    public ConfigManager(File rootDirectory)
     {
+        if(!rootDirectory.exists())
+        {
+            rootDirectory.mkdirs();
+        }
+
         this.rootDirectory = rootDirectory;
     }
 
     public Configuration getConfig(String configName)
     {
-        return configFiles.get(configName);
+        Configuration config = configFiles.get(configName);
+        if(config == null)
+        {
+            config = new Configuration(new File(this.rootDirectory, configName + ".cfg"), false);
+            configFiles.put(configName, config);
+        }
+        return config;
     }
 
-    public void loadConfig(String configName)
+    public void load()
     {
-        Configuration configToLoad = new Configuration(new File(), false);
+        for(Configuration config : configFiles.values())
+        {
+            config.load();
+        }
     }
 
     public void saveConfig(String configName)
     {
+        configFiles.get(configName).save();
+    }
 
+    public void saveAll()
+    {
+        for(Configuration config : configFiles.values())
+        {
+            config.save();
+        }
     }
 
 }
-
-FEDIR = new File(FunctionHelper.getBaseDir(), "/ForgeEssentials");
-

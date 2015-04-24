@@ -2,13 +2,10 @@ package com.sinistralis.AdventureFramework.Core;
 
 import com.sinistralis.AdventureFramework.Common.ConfigManager;
 import com.sinistralis.AdventureFramework.Common.ProxyCommon;
-import com.sinistralis.AdventureFramework.Content.AdventureContentLoader;
-import com.sinistralis.AdventureFramework.Stats.StatConfigurationHandler;
 import com.sinistralis.AdventureFramework.Stats.StatsInterceptor;
 import com.sinistralis.AdventureFramework.Utils.FunctionUtils;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -39,25 +36,16 @@ public class AdventureFramework
     @Instance(value = AdventureFramework.MODID)
     public static AdventureFramework instance;
 
-    public static StatConfigurationHandler statConfig;
     public static ConfigManager configManager;
-
-    private void setupAdventureStatsConfiguration(FMLPreInitializationEvent event)
-    {
-        AdventureContentLoader.loadCoreContent();
-
-        statConfig = new StatConfigurationHandler(new Configuration(event.getSuggestedConfigurationFile()));
-        statConfig.loadConfiguration();
-    }
 
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        AFDirectory = new File(FunctionUtils.getBaseDir(), "/ForgeEssentials");
+        AFDirectory = new File(FunctionUtils.getBaseDir(), "/AdventureFramework");
 
-        configManager = new ConfigManager(AFDirectory.getAbsolutePath().concat("/AdventureFramework"));
-        setupAdventureStatsConfiguration(event);
+        configManager = new ConfigManager(AFDirectory);
+
     }
 
     @EventHandler
