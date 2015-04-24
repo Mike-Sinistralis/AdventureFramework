@@ -17,12 +17,8 @@ public class StatConfigurationHandler
 
     public void loadConfiguration()
     {
-        ConfigCategory attributes = config.getCategory("attributeConfig");
-        Property test = config.get(attributes.getName(), "test", "nothing");
-
-
-
         config.load();
+
 
 
         config.save();

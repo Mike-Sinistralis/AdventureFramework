@@ -1,9 +1,11 @@
-package com.sinistralis.AdventureFramework;
+package com.sinistralis.AdventureFramework.Core;
 
+import com.sinistralis.AdventureFramework.Common.ConfigManager;
 import com.sinistralis.AdventureFramework.Common.ProxyCommon;
 import com.sinistralis.AdventureFramework.Content.AdventureContentLoader;
 import com.sinistralis.AdventureFramework.Stats.StatConfigurationHandler;
 import com.sinistralis.AdventureFramework.Stats.StatsInterceptor;
+import com.sinistralis.AdventureFramework.Utils.FunctionUtils;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.common.config.Configuration;
@@ -18,11 +20,14 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;
+
 
 @Mod(modid = AdventureFramework.MODID, version = AdventureFramework.VERSION, name = AdventureFramework.MODNAME)
 public class AdventureFramework
 {
     private static Logger logger = LogManager.getLogger("AdventureFramework");
+    private File AFDirectory;
 
     public static final String MODID = "AdventureFramework";
     public static final String MODNAME ="AdventureFramework";
@@ -30,11 +35,12 @@ public class AdventureFramework
 
     @SidedProxy(clientSide = "com.ForgeEssentials.ProxyClient", serverSide = "com.ForgeEssentials.ProxyCommon")
     public static ProxyCommon proxy;
-    
+
     @Instance(value = AdventureFramework.MODID)
     public static AdventureFramework instance;
 
     public static StatConfigurationHandler statConfig;
+    public static ConfigManager configManager;
 
     private void setupAdventureStatsConfiguration(FMLPreInitializationEvent event)
     {
@@ -48,6 +54,9 @@ public class AdventureFramework
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+        AFDirectory = new File(FunctionUtils.getBaseDir(), "/ForgeEssentials");
+
+        configManager = new ConfigManager(AFDirectory.getAbsolutePath().concat("/AdventureFramework"));
         setupAdventureStatsConfiguration(event);
     }
 
