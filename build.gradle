@@ -20,6 +20,8 @@ apply plugin: 'forge'
 version = "1.8-0.1"
 group= "com.sinistralis.adventure-framework"
 archivesBaseName = "AdventureFramework"
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 minecraft {
     version = "1.8-11.14.1.1334"
@@ -47,6 +49,7 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
+    compile 'org.glassfish:javax.json:1.0.4'
 }
 
 processResources

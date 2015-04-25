@@ -11,7 +11,6 @@ public class ResourceAttribute extends Attribute
 
     ResourceAttribute(float baseVal, float baseReg)
     {
-        super(baseVal);
         currentAmount = baseVal;
         baseRegen = baseReg;
         flatRegen = 0;

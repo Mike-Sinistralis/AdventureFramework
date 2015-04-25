@@ -1,17 +1,27 @@
 package com.sinistralis.AdventureFramework.Stats.Attributes;
 
-public class Attribute
-{
-    protected double totalValue;
+import org.w3c.dom.Attr;
 
-    private float baseValue;
+import java.util.HashMap;
+import java.util.Map;
+import javax.json.*;
+
+
+public abstract class Attribute {
+
+    private String name = "Attribute";
+    private String description = "Need Description";
+    private boolean isEnabled = true;
+    private Map<String, Integer> GainPerAttribute = new HashMap<>();
+    private Map<String, Integer> InitialAttribute = new HashMap<>();
+    private int attributeWeight = 0;
+    private AttributeCategory category = AttributeCategory.PRIMARY;
+
+    private float baseValue = 0;
     private int flatModifier = 0;
-    private float multiplicativeModifier = 0;
+    private float multiplicativeModifier = 1;
 
-    Attribute(float baseVal)
-    {
-        baseValue = baseVal;
-    }
+    private double currentTotalValue = 0;
 
     private double calculateTotalValue()
     {
@@ -19,20 +29,68 @@ public class Attribute
         return result >= 0 ? result : 0;
     }
 
-    public void alterFlat(int flatAmount)
+
+
+    public JsonObjectBuilder getConfigJson()
     {
-        flatModifier += flatAmount;
-        totalValue = calculateTotalValue();
+        JsonBuilderFactory jsonFactory = Json.createBuilderFactory(new HashMap<String, Object>());
+
+        JsonObjectBuilder attributeConfig = jsonFactory.createObjectBuilder();
+        JsonObjectBuilder gainPerAttributeConfig = jsonFactory.createObjectBuilder();
+        JsonObjectBuilder initialAttributeConfig = jsonFactory.createObjectBuilder();
+
+        for(Map.Entry<String, Integer> gainConfig : GainPerAttribute.entrySet())
+        {
+            gainPerAttributeConfig.add(gainConfig.getKey(), gainConfig.getValue());
+        }
+
+        for(Map.Entry<String, Integer> initialConfig : InitialAttribute.entrySet())
+        {
+            initialAttributeConfig.add(initialConfig.getKey(), initialConfig.getValue());
+        }
+
+        attributeConfig
+            .add("AttributeName", name)
+            .add("AttributeDescription", description)
+            .add("AttributeEnabled", isEnabled)
+            .add("GainPerAttribute", gainPerAttributeConfig)
+            .add("AttributeInitial", initialAttributeConfig)
+            .add("AttributeEquipmentWeight", attributeWeight)
+            .add("AttributeEquipmentCategory", category.name());
+
+        return attributeConfig;
     }
 
-    public void alterMult(float multiplicativeAmount)
+    public void loadConfigJson(JsonObject attributeConfig)
     {
-        multiplicativeModifier += multiplicativeAmount;
-        totalValue = calculateTotalValue();
-    }
+        JsonObject gainPerAttributeConfig;
+        JsonObject initialAttributeConfig;
 
-    public double getCurrentValue()
-    {
-        return totalValue;
+        if(!attributeConfig.isNull("GainPerAttribute"))
+        {
+            gainPerAttributeConfig = attributeConfig.getJsonObject("GainPerAttribute");
+
+            for(Map.Entry<String, Integer> gainConfig : GainPerAttribute.entrySet())
+            {
+                gainConfig.setValue(gainPerAttributeConfig.getInt(gainConfig.getKey(), gainConfig.getValue()));
+            }
+        }
+
+        if(!attributeConfig.isNull("AttributeInitial"))
+        {
+            initialAttributeConfig = attributeConfig.getJsonObject("AttributeInitial");
+
+            for(Map.Entry<String, Integer> initialConfig : InitialAttribute.entrySet())
+            {
+                initialConfig.setValue(initialAttributeConfig.getInt(initialConfig.getKey(), initialConfig.getValue()));
+            }
+        }
+
+
+        name = attributeConfig.getString("AttributeName", name);
+        description = attributeConfig.getString("AttributeDescription", description);
+        isEnabled = attributeConfig.getBoolean("AttributeEnabled", isEnabled);
+        attributeWeight = attributeConfig.getInt("AttributeEquipmentWeight", attributeWeight);
+        category = AttributeCategory.valueOf(attributeConfig.getString("AttributeEquipmentCategory", category.name()));
     }
 }
