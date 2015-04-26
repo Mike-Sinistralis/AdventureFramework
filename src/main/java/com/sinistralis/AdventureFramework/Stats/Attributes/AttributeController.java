@@ -13,9 +13,9 @@ public final class AttributeController extends AdventureController{
 
     private static HashMap<String, Attribute> Attributes = new HashMap<String, Attribute>();
 
-    public static void loadAttribute(String attributeName, Attribute attr)
+    public static void loadAttribute(Attribute attr)
     {
-        Attributes.put(attributeName, attr);
+        Attributes.put(attr.getName(), attr);
     }
 
     public static Attribute getNewAttributeByName(String key)
