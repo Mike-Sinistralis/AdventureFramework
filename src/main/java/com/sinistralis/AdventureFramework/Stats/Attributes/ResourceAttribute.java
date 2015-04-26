@@ -3,18 +3,15 @@ package com.sinistralis.AdventureFramework.Stats.Attributes;
 
 public class ResourceAttribute extends Attribute
 {
-    double totalRegen;
-    double currentAmount;
+    float totalRegen;
+    int currentAmount;
 
     float baseRegen;
     float flatRegen;
 
-    ResourceAttribute(float baseVal, float baseReg)
+    ResourceAttribute()
     {
-        currentAmount = baseVal;
-        baseRegen = baseReg;
-        flatRegen = 0;
-        totalRegen = baseReg;
+
     }
 
     private void deplete(int amount)

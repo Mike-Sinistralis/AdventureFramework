@@ -1,0 +1,17 @@
+PlayerEvent.Clone to persist NBT data. This will be important to us.
+
+We need a "Class" object. We will support "Generic" by default, probably called Adventurer.
+    Class will determine stat multipliers, starting values, etc.
+
+Consider making a UI for when a player first joins the server. When this happens, make them invulnerable and give them a GUI that lets them customize their starting soul.
+
+Different types of equipment will have different weight modifiers for different stats.
+
+Usable abilities should be found. Requires a skill level in certain trees.
+
+On levelup, grant Passive Points and Skill Points I think
+
+You can set the value of the "naturalRegeneration" game rule to "false" to disable health regeneration. Use World#getGameRules to get the GameRules object for a World, then use GameRules#setOrCreateGameRule to set the value for a rule.
+
+Tterrag has an API for potions, check on it for 1.8
+

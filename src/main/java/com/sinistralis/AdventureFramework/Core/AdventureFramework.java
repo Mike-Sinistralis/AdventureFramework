@@ -30,7 +30,7 @@ public class AdventureFramework
     public static final String MODNAME ="AdventureFramework";
     public static final String VERSION = "0.1";
 
-    @SidedProxy(clientSide = "com.ForgeEssentials.ProxyClient", serverSide = "com.ForgeEssentials.ProxyCommon")
+    @SidedProxy(clientSide = "com.sinistralis.AdventureFramework.Client.ProxyClient", serverSide = "com.sinistralis.AdventureFramework.Common.ProxyCommon")
     public static ProxyCommon proxy;
 
     @Instance(value = AdventureFramework.MODID)
@@ -53,6 +53,7 @@ public class AdventureFramework
     {
         FMLCommonHandler.instance().bus().register(instance);
         MinecraftForge.EVENT_BUS.register(new StatsInterceptor());
+        FMLCommonHandler.instance().bus().register(new StatsInterceptor());
     }
 
     @EventHandler

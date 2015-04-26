@@ -1,9 +1,16 @@
 package com.sinistralis.AdventureFramework.Stats;
 
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class StatsInterceptor
 {
@@ -21,4 +28,11 @@ public class StatsInterceptor
     {
 
     }
+
+    @SubscribeEvent
+    public void onEntityUpdate(LivingEvent.LivingUpdateEvent event)
+    {
+        EntityLivingBase derp = event.entityLiving;
+    }
+
 }
