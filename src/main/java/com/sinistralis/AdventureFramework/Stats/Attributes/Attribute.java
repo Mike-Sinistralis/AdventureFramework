@@ -1,10 +1,12 @@
 package com.sinistralis.AdventureFramework.Stats.Attributes;
 
+import com.sinistralis.AdventureFramework.Core.IConfigurable;
+
 import java.util.HashMap;
 import javax.json.*;
 
 
-public abstract class Attribute {
+public class Attribute implements IConfigurable {
 
     private String name = "Attribute";
     private String description = "Need Description";
@@ -22,6 +24,13 @@ public abstract class Attribute {
     {
         int result = (int) Math.floor((baseValue + flatModifier) * (multiplicativeModifier));
         return result >= 0 ? result : 0;
+    }
+
+    public static Attribute cloneStructure(Attribute toClone)
+    {
+        Attribute clone = new Attribute();
+        clone.setName(toClone.name).setDescription(toClone.description).setCategory(toClone.category).setAttributeWeight(toClone.attributeWeight).setEnabled(toClone.isEnabled);
+        return clone;
     }
 
     public String getName() {
@@ -88,7 +97,7 @@ public abstract class Attribute {
         return currentTotalValue;
     }
 
-    public JsonObjectBuilder getConfigJson()
+    public JsonObjectBuilder writeConfigJson()
     {
         JsonBuilderFactory jsonFactory = Json.createBuilderFactory(new HashMap<String, Object>());
 

@@ -13,5 +13,5 @@ On levelup, grant Passive Points and Skill Points I think
 
 You can set the value of the "naturalRegeneration" game rule to "false" to disable health regeneration. Use World#getGameRules to get the GameRules object for a World, then use GameRules#setOrCreateGameRule to set the value for a rule.
 
-Tterrag has an API for potions, check on it for 1.8
+Tterrag has an API for potions, check on it for 1.8. We might want to just make our own effects system, and include potions as effects.
 

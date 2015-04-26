@@ -1,29 +1,36 @@
 package com.sinistralis.AdventureFramework.Stats.Attributes;
 
+import com.sinistralis.AdventureFramework.Core.AdventureController;
+import com.sinistralis.AdventureFramework.Core.AdventureFramework;
+import com.sinistralis.AdventureFramework.Core.Enums.ConfigType;
+import com.sinistralis.AdventureFramework.Core.IConfigurable;
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.AttributeType;
+import net.minecraftforge.common.config.Configuration;
+
 import java.util.HashMap;
 
-public final class AttributeController {
+public final class AttributeController extends AdventureController{
 
     private static HashMap<String, Attribute> Attributes = new HashMap<String, Attribute>();
-
-    AttributeController()
-    {
-
-    }
 
     public static void loadAttribute(String attributeName, Attribute attr)
     {
         Attributes.put(attributeName, attr);
     }
 
-    public static Attribute getAttributeType(String key)
+    public static Attribute getNewAttributeByName(String key)
     {
-        return Attributes.get(key);
+        return Attribute.cloneStructure(Attributes.get(key));
     }
 
-    public static Object[] getKnownAttributes()
+    public static Attribute[] getKnownAttributes()
     {
-        return Attributes.values().toArray();
+        return (Attribute[]) Attributes.values().toArray();
+    }
+
+    public static void loadConfig()
+    {
+        loadConfig(ConfigType.ATTRIBUTES.name(), getKnownAttributes());
     }
 
 

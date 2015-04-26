@@ -4,25 +4,44 @@ package com.sinistralis.AdventureFramework.Stats.Attributes;
 public class ResourceAttribute extends Attribute
 {
     float totalRegen;
-    int currentAmount;
+    float currentAmount;
 
     float baseRegen;
     float flatRegen;
 
-    ResourceAttribute()
+    public ResourceAttribute()
     {
 
     }
 
     private void deplete(int amount)
     {
-        double result = currentAmount - amount;
-
+        currentAmount -= amount;
     }
 
-    public void restore(int amount)
+    public void alterCurrentAmount(int amount)
     {
+        currentAmount = (float) Math.floor(currentAmount + amount);
+    }
 
+    public void calculateTotalRegen()
+    {
+        totalRegen = baseRegen + flatRegen;
+    }
+
+    public void alterBaseRegen(float amount)
+    {
+        baseRegen += amount;
+    }
+
+    public void alterFlatRegen(float amount)
+    {
+        flatRegen += amount;
+    }
+
+    public float getTotalRegen()
+    {
+        return totalRegen;
     }
 
     //TODO Add Ability Arguement, this should call deplete if true

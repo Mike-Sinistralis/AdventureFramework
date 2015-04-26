@@ -1,6 +1,6 @@
 package com.sinistralis.AdventureFramework.Stats.Attributes;
 
-public class DiminishingAttribute {
+public class DiminishingAttribute extends Attribute {
 
 
 

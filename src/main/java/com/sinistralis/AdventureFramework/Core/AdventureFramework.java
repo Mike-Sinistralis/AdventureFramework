@@ -2,6 +2,7 @@ package com.sinistralis.AdventureFramework.Core;
 
 import com.sinistralis.AdventureFramework.Common.ConfigManager;
 import com.sinistralis.AdventureFramework.Common.ProxyCommon;
+import com.sinistralis.AdventureFramework.Content.Stats.StatLoader;
 import com.sinistralis.AdventureFramework.Stats.StatsInterceptor;
 import com.sinistralis.AdventureFramework.Utils.FunctionUtils;
 import net.minecraftforge.common.MinecraftForge;
@@ -43,8 +44,9 @@ public class AdventureFramework
     public void preInit(FMLPreInitializationEvent event)
     {
         AFDirectory = new File(FunctionUtils.getBaseDir(), "/AdventureFramework");
-
         configManager = new ConfigManager(AFDirectory);
+
+        StatLoader.load();
 
     }
 
