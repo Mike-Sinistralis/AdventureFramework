@@ -1,4 +1,4 @@
-package com.sinistralis.AdventureFramework.Stats.Attributes;
+package com.adventureframework.Stats.Attributes;
 
 
 public class ResourceAttribute extends Attribute

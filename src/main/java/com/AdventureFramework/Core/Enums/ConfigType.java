@@ -1,4 +1,4 @@
-package com.sinistralis.AdventureFramework.Core.Enums;
+package com.adventureframework.Core.Enums;
 
 public enum ConfigType {
     ATTRIBUTES ("Attributes"),

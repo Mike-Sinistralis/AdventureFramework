@@ -5,10 +5,10 @@
   "description": "A set of tools to assist in creating complex RPG rules in Minecraft.",
   "version": "${version}",
   "mcversion": "${mcversion}",
-  "url": "",
+  "url": "https://github.com/Sinistralis/AdventureFramework",
   "updateUrl": "",
   "authorList": ["Sinistralis777"],
-  "credits": "The Forge and FML guys, for making this example",
+  "credits": "Everyone who has written information on Forge, and the Forge creators themselves.",
   "logoFile": "",
   "screenshots": [],
   "dependencies": []

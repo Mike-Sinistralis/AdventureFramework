@@ -17,9 +17,9 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.8-0.1"
-group= "com.sinistralis.adventure-framework"
-archivesBaseName = "AdventureFramework"
+version = "1.8-0.11-ALPHA"
+group= "com.adventureframework"
+archivesBaseName = "adventureframework"
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
 

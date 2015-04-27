@@ -1,11 +1,11 @@
-package com.sinistralis.AdventureFramework.Core;
+package com.adventureframework.Core;
 
-import com.sinistralis.AdventureFramework.Common.ProxyCommon;
-import com.sinistralis.AdventureFramework.Content.Stats.StatLoader;
-import com.sinistralis.AdventureFramework.Core.Enums.ConfigType;
-import com.sinistralis.AdventureFramework.Stats.Attributes.AttributeController;
-import com.sinistralis.AdventureFramework.Stats.StatsInterceptor;
-import com.sinistralis.AdventureFramework.Utils.FunctionUtils;
+import com.adventureframework.Common.ProxyCommon;
+import com.adventureframework.Core.Enums.ConfigType;
+import com.adventureframework.Stats.Attributes.AttributeController;
+import com.adventureframework.Stats.StatsInterceptor;
+import com.adventureframework.Utils.FunctionUtils;
+import com.adventureframework.Content.Stats.StatLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -21,18 +21,16 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 
-
 @Mod(modid = AdventureFramework.MODID, version = AdventureFramework.VERSION, name = AdventureFramework.MODNAME)
 public class AdventureFramework
 {
-    private static Logger logger = LogManager.getLogger("AdventureFramework");
-    private File AFDirectory;
+    private static Logger logger = LogManager.getLogger("adventureframework");
 
-    public static final String MODID = "AdventureFramework";
-    public static final String MODNAME ="AdventureFramework";
+    public static final String MODID = "adventureframework";
+    public static final String MODNAME ="adventureframework";
     public static final String VERSION = "0.1";
 
-    @SidedProxy(clientSide = "com.sinistralis.AdventureFramework.Client.ProxyClient", serverSide = "com.sinistralis.AdventureFramework.Common.ProxyCommon")
+    @SidedProxy(clientSide = "com.adventureframework.Client.ProxyClient", serverSide = "com.adventureframework.Common.ProxyCommon")
     public static ProxyCommon proxy;
 
     @Instance(value = AdventureFramework.MODID)
@@ -43,9 +41,10 @@ public class AdventureFramework
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+        File AFDirectory;
         AttributeController attributeController = new AttributeController();
 
-        AFDirectory = new File(FunctionUtils.getBaseDir(), "/AdventureFramework");
+        AFDirectory = new File(FunctionUtils.getBaseDir(), "/adventureframework");
         configManager = new ConfigManager(AFDirectory);
 
         ControllerManager.registerControllerByName(ConfigType.ATTRIBUTES.name(), attributeController);

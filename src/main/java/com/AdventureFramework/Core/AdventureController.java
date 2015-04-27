@@ -1,4 +1,4 @@
-package com.sinistralis.AdventureFramework.Core;
+package com.adventureframework.Core;
 
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;

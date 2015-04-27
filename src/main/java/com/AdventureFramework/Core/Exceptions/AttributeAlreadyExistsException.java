@@ -1,4 +1,4 @@
-package com.sinistralis.AdventureFramework.Core.Exceptions;
+package com.adventureframework.Core.Exceptions;
 
 public class AttributeAlreadyExistsException extends RuntimeException {
 

@@ -1,6 +1,6 @@
-package com.sinistralis.AdventureFramework.Core;
+package com.adventureframework.Core;
 
-import com.sinistralis.AdventureFramework.Core.Enums.ConfigType;
+import com.adventureframework.Core.Enums.ConfigType;
 
 import java.util.HashMap;
 import java.util.Map;

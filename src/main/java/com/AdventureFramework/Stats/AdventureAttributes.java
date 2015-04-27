@@ -1,4 +1,4 @@
-package com.sinistralis.AdventureFramework.Stats;
+package com.adventureframework.Stats;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;

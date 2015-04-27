@@ -1,7 +1,7 @@
-package com.sinistralis.AdventureFramework.Stats.Attributes;
+package com.adventureframework.Stats.Attributes;
 
-import com.sinistralis.AdventureFramework.Core.Enums.AttributeCategory;
-import com.sinistralis.AdventureFramework.Core.IConfigurable;
+import com.adventureframework.Core.IConfigurable;
+import com.adventureframework.Core.Enums.AttributeCategory;
 
 import java.util.HashMap;
 import java.util.Map;

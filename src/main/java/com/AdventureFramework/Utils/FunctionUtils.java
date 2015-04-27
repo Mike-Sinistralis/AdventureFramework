@@ -1,9 +1,8 @@
-package com.sinistralis.AdventureFramework.Utils;
+package com.adventureframework.Utils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-import javax.json.JsonObject;
 import java.io.File;
 
 public final class FunctionUtils {
