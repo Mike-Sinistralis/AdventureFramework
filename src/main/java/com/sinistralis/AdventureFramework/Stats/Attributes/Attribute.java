@@ -4,15 +4,15 @@ import com.sinistralis.AdventureFramework.Core.Enums.AttributeCategory;
 import com.sinistralis.AdventureFramework.Core.IConfigurable;
 
 import java.util.HashMap;
-import javax.json.*;
+import java.util.Map;
 
 
 public class Attribute implements IConfigurable {
 
     private String name = "Attribute";
     private String description = "Need Description";
-    private boolean isEnabled = true;
-    private int attributeWeight = 0;
+    private Boolean isEnabled = true;
+    private Integer attributeWeight = 0;
     private AttributeCategory category = AttributeCategory.PRIMARY;
 
     private int baseValue = 0;
@@ -98,28 +98,23 @@ public class Attribute implements IConfigurable {
         return currentTotalValue;
     }
 
-    public JsonObjectBuilder writeConfigJson()
+    public Map<String, String> writeConfig()
     {
-        JsonBuilderFactory jsonFactory = Json.createBuilderFactory(new HashMap<String, Object>());
+        Map<String, String> config = new HashMap<>();
 
-        JsonObjectBuilder attributeConfig = jsonFactory.createObjectBuilder();
+        config.put("Description",description);
+        config.put("Enabled", isEnabled.toString());
+        config.put("Weight", attributeWeight.toString());
+        config.put("Category", category.getFriendlyName());
 
-        attributeConfig
-            .add("AttributeName", name)
-            .add("AttributeDescription", description)
-            .add("AttributeEnabled", isEnabled)
-            .add("AttributeEquipmentWeight", attributeWeight)
-            .add("AttributeEquipmentCategory", category.name());
-
-        return attributeConfig;
+        return config;
     }
 
-    public void loadConfigJson(JsonObject attributeConfig)
+    public void loadConfig(Map<String, String> attributeConfig)
     {
-        name = attributeConfig.getString("AttributeName", name);
-        description = attributeConfig.getString("AttributeDescription", description);
-        isEnabled = attributeConfig.getBoolean("AttributeEnabled", isEnabled);
-        attributeWeight = attributeConfig.getInt("AttributeEquipmentWeight", attributeWeight);
-        category = AttributeCategory.valueOf(attributeConfig.getString("AttributeEquipmentCategory", category.name()));
+        description = attributeConfig.get("Description");
+        isEnabled = Boolean.valueOf(attributeConfig.get("Enabled"));
+        attributeWeight = Integer.parseInt(attributeConfig.get("Weight"));
+        category = AttributeCategory.valueOf(attributeConfig.get("Category").toUpperCase());
     }
 }

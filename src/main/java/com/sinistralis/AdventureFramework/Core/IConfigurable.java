@@ -1,11 +1,10 @@
 package com.sinistralis.AdventureFramework.Core;
 
-import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
+import java.util.Map;
 
 public interface IConfigurable {
 
-    public JsonObjectBuilder writeConfigJson();
+    public Map<String, String> writeConfig();
 
-    public void loadConfigJson(JsonObject config);
+    public void loadConfig(Map<String, String> config);
 }

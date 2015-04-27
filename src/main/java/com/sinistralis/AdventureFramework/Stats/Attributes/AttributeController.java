@@ -1,8 +1,11 @@
 package com.sinistralis.AdventureFramework.Stats.Attributes;
 
 import com.sinistralis.AdventureFramework.Core.AdventureController;
+import com.sinistralis.AdventureFramework.Core.AdventureFramework;
 import com.sinistralis.AdventureFramework.Core.Enums.ConfigType;
 import com.sinistralis.AdventureFramework.Core.Exceptions.AttributeAlreadyExistsException;
+import net.minecraftforge.common.config.ConfigCategory;
+import net.minecraftforge.common.config.Configuration;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -42,18 +45,36 @@ public class AttributeController extends AdventureController{
 
     public void loadStagedAttributes()
     {
+        Configuration config = AdventureFramework.configManager.getConfigByName(ConfigType.STATS.getFriendlyName());
+
+        config.load();
+
         for(Attribute attribute : stagedAttributes.values())
         {
-            if(loadProperty(ConfigType.ATTRIBUTES, attribute))
-            {
-                loadedAttributes.remove(attribute.getName());
-                stagedAttributes.put(attribute.getName(), attribute);
-            }
+            readControllerData(config, attribute.getName(), attribute);
+            writeControllerData(config, attribute.getName(), attribute);
+
+            loadedAttributes.put(attribute.getName(), attribute);
         }
+
+        stagedAttributes.clear();
+
+        config.addCustomCategoryComment("armor", "Explanation about each field goes here");
+
+        config.save();
     }
 
     public void loadConfig()
     {
-        loadConfig(ConfigType.ATTRIBUTES, getKnownAttributes());
+        String configName = ConfigType.STATS.getFriendlyName();
+        Configuration config = AdventureFramework.configManager.getConfigByName(configName);
+        ConfigCategory masterCategory = config.getCategory(ConfigType.ATTRIBUTES.getConfigName());
+
+        config.load();
+
+        for(Attribute attribute : stagedAttributes.values())
+        {
+            readControllerData(config, attribute.getName(), attribute);
+        }
     }
 }

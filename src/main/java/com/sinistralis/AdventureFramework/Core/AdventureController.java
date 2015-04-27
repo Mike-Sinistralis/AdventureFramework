@@ -1,29 +1,41 @@
 package com.sinistralis.AdventureFramework.Core;
 
-import com.sinistralis.AdventureFramework.Core.Enums.ConfigType;
+import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.common.config.Property;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class AdventureController {
 
-    protected void loadConfig(ConfigType configType, IConfigurable[] configurables)
+    protected void readControllerData(Configuration config, String propertyName, IConfigurable loadable)
     {
-        String configName = configType.getFriendlyName();
-        Configuration config = AdventureFramework.configManager.getConfigByName(configName);
+        Map<String,String> propertiesToLoad = new HashMap<>();
+        String configPropertyName = propertyName.toLowerCase();
+        ConfigCategory existingCategory;
 
-        config.load();
+        if(config.hasCategory(configPropertyName))
+        {
+            existingCategory = config.getCategory(configPropertyName);
 
-        //Setup file, go through known Attributes
+            for(Map.Entry<String, Property> entry : existingCategory.entrySet())
+            {
+                propertiesToLoad.put(entry.getKey(), entry.getValue().getString());
+            }
+
+            loadable.loadConfig(propertiesToLoad);
+        }
     }
 
-    protected boolean loadProperty(ConfigType configType, IConfigurable loadable)
+    protected void writeControllerData(Configuration config, String propertyName, IConfigurable loadable)
     {
-        String configName = configType.getFriendlyName();
-        Configuration config = AdventureFramework.configManager.getConfigByName(configName);
+        Map<String,String> attributeProperties = loadable.writeConfig();
+        String configPropertyName = propertyName.toLowerCase();
 
-        config.load();
-
-        //Write loadable to config. If successful, return true. Else false
-
-        return true;
+        for(Map.Entry<String,String> property : attributeProperties.entrySet())
+        {
+            config.get(configPropertyName, property.getKey(), property.getValue());
+        }
     }
 }

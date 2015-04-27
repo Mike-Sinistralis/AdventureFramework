@@ -2,7 +2,8 @@ package com.sinistralis.AdventureFramework.Core.Enums;
 
 public enum ConfigType {
     ATTRIBUTES ("Attributes"),
-    EFFECTS ("Effects");
+    EFFECTS ("Effects"),
+    STATS ("Stats");
 
     private String friendlyName;
 
@@ -15,4 +16,10 @@ public enum ConfigType {
     {
         return this.friendlyName;
     }
+
+    public String getConfigName()
+    {
+        return this.friendlyName.toLowerCase();
+    }
+
 }
