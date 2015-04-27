@@ -28,7 +28,7 @@ public class AdventureFramework
 
     public static final String MODID = "adventureframework";
     public static final String MODNAME ="adventureframework";
-    public static final String VERSION = "0.1";
+    public static final String VERSION = "0.11";
 
     @SidedProxy(clientSide = "com.adventureframework.client.ProxyClient", serverSide = "com.adventureframework.common.ProxyCommon")
     public static ProxyCommon proxy;
@@ -52,6 +52,8 @@ public class AdventureFramework
         StatLoader.stageAttributes(attributeController);
 
         attributeController.loadStagedAttributes();
+
+        proxy.preInit(event);
     }
 
     @EventHandler
@@ -60,12 +62,16 @@ public class AdventureFramework
         FMLCommonHandler.instance().bus().register(instance);
         MinecraftForge.EVENT_BUS.register(new StatsInterceptor());
         FMLCommonHandler.instance().bus().register(new StatsInterceptor());
+
+        proxy.init(event);
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
 
+
+        proxy.postInit(event);
     }
 
     @EventHandler
