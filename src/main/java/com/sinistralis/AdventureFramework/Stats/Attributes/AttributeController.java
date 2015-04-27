@@ -1,38 +1,59 @@
 package com.sinistralis.AdventureFramework.Stats.Attributes;
 
 import com.sinistralis.AdventureFramework.Core.AdventureController;
-import com.sinistralis.AdventureFramework.Core.AdventureFramework;
 import com.sinistralis.AdventureFramework.Core.Enums.ConfigType;
-import com.sinistralis.AdventureFramework.Core.IConfigurable;
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.AttributeType;
-import net.minecraftforge.common.config.Configuration;
+import com.sinistralis.AdventureFramework.Core.Exceptions.AttributeAlreadyExistsException;
 
 import java.util.HashMap;
+import java.util.Map;
 
-public final class AttributeController extends AdventureController{
+public class AttributeController extends AdventureController{
 
-    private static HashMap<String, Attribute> Attributes = new HashMap<String, Attribute>();
+    private Map<String, Attribute> loadedAttributes = new HashMap<>();
+    private Map<String, Attribute> stagedAttributes = new HashMap<>();
 
-    public static void loadAttribute(Attribute attr)
+    public void stageAttribute(Attribute attr)
     {
-        Attributes.put(attr.getName(), attr);
+        if(loadedAttributes.get(attr.getName()) == null)
+        {
+            stagedAttributes.put(attr.getName(), attr);
+        }
+        else
+        {
+            throw new AttributeAlreadyExistsException();
+        }
     }
 
-    public static Attribute getNewAttributeByName(String key)
+    public Attribute getNewAttributeByName(String key)
     {
-        return Attribute.cloneStructure(Attributes.get(key));
+        Attribute returnAttribute = null;
+
+        if(loadedAttributes.get(key) != null)
+        {
+            returnAttribute = Attribute.cloneStructure(loadedAttributes.get(key));
+        }
+        return returnAttribute;
     }
 
-    public static Attribute[] getKnownAttributes()
+    public Attribute[] getKnownAttributes()
     {
-        return (Attribute[]) Attributes.values().toArray();
+        return (Attribute[]) loadedAttributes.values().toArray();
     }
 
-    public static void loadConfig()
+    public void loadStagedAttributes()
     {
-        loadConfig(ConfigType.ATTRIBUTES.name(), getKnownAttributes());
+        for(Attribute attribute : stagedAttributes.values())
+        {
+            if(loadProperty(ConfigType.ATTRIBUTES, attribute))
+            {
+                loadedAttributes.remove(attribute.getName());
+                stagedAttributes.put(attribute.getName(), attribute);
+            }
+        }
     }
 
-
-
+    public void loadConfig()
+    {
+        loadConfig(ConfigType.ATTRIBUTES, getKnownAttributes());
+    }
 }

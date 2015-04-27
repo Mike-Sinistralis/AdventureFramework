@@ -1,4 +1,4 @@
-package com.sinistralis.AdventureFramework.Common;
+package com.sinistralis.AdventureFramework.Core;
 
 import net.minecraftforge.common.config.Configuration;
 
@@ -21,7 +21,7 @@ public class ConfigManager
         this.rootDirectory = rootDirectory;
     }
 
-    public Configuration getConfig(String configName)
+    public Configuration getConfigByName(String configName)
     {
         Configuration config = configFiles.get(configName);
         if(config == null)

@@ -1,12 +1,12 @@
 package com.sinistralis.AdventureFramework.Core.Enums;
 
-public enum ConfigType {
-    ATTRIBUTES ("Attributes"),
-    EFFECTS ("Effects");
+public enum AttributeCategory {
+    PRIMARY ("Primary"),
+    SECONDARY ("Secondary");
 
     private String friendlyName;
 
-    private ConfigType(String friendlyName)
+    private AttributeCategory(String friendlyName)
     {
         this.friendlyName = friendlyName;
     }

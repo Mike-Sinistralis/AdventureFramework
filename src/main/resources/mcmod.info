@@ -2,7 +2,7 @@
 {
   "modid": "AdventureFramework",
   "name": "Adventure Framework",
-  "description": "A set of tools to assist in creating complex RPG rules in minecraft.",
+  "description": "A set of tools to assist in creating complex RPG rules in Minecraft.",
   "version": "${version}",
   "mcversion": "${mcversion}",
   "url": "",

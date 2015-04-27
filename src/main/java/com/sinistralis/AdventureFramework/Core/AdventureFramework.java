@@ -1,8 +1,9 @@
 package com.sinistralis.AdventureFramework.Core;
 
-import com.sinistralis.AdventureFramework.Common.ConfigManager;
 import com.sinistralis.AdventureFramework.Common.ProxyCommon;
 import com.sinistralis.AdventureFramework.Content.Stats.StatLoader;
+import com.sinistralis.AdventureFramework.Core.Enums.ConfigType;
+import com.sinistralis.AdventureFramework.Stats.Attributes.AttributeController;
 import com.sinistralis.AdventureFramework.Stats.StatsInterceptor;
 import com.sinistralis.AdventureFramework.Utils.FunctionUtils;
 import net.minecraftforge.common.MinecraftForge;
@@ -39,15 +40,19 @@ public class AdventureFramework
 
     public static ConfigManager configManager;
 
-
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+        AttributeController attributeController = new AttributeController();
+
         AFDirectory = new File(FunctionUtils.getBaseDir(), "/AdventureFramework");
         configManager = new ConfigManager(AFDirectory);
 
-        StatLoader.load();
+        ControllerManager.registerControllerByName(ConfigType.ATTRIBUTES.name(), attributeController);
 
+        StatLoader.stageAttributes(attributeController);
+
+        attributeController.loadStagedAttributes();
     }
 
     @EventHandler
