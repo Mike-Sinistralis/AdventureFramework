@@ -1,9 +1,9 @@
-package com.adventureframework.Stats.Attributes;
+package com.adventureframework.stats.attributes;
 
-import com.adventureframework.Core.AdventureController;
-import com.adventureframework.Core.AdventureFramework;
-import com.adventureframework.Core.Enums.ConfigType;
-import com.adventureframework.Core.Exceptions.AttributeAlreadyExistsException;
+import com.adventureframework.core.AdventureController;
+import com.adventureframework.core.AdventureFramework;
+import com.adventureframework.core.enums.ConfigType;
+import com.adventureframework.core.exceptions.AttributeAlreadyExistsException;
 import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
 

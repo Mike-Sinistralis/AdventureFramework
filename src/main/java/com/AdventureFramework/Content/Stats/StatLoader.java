@@ -1,10 +1,10 @@
-package com.adventureframework.Content.Stats;
+package com.adventureframework.content.stats;
 
-import com.adventureframework.Core.Enums.AttributeCategory;
-import com.adventureframework.Stats.Attributes.Attribute;
-import com.adventureframework.Stats.Attributes.AttributeController;
-import com.adventureframework.Stats.Attributes.DiminishingAttribute;
-import com.adventureframework.Stats.Attributes.ResourceAttribute;
+import com.adventureframework.core.enums.AttributeCategory;
+import com.adventureframework.stats.attributes.Attribute;
+import com.adventureframework.stats.attributes.AttributeController;
+import com.adventureframework.stats.attributes.DiminishingAttribute;
+import com.adventureframework.stats.attributes.ResourceAttribute;
 
 public class StatLoader {
 

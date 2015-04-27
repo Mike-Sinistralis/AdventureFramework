@@ -1,4 +1,4 @@
-package com.adventureframework.Stats;
+package com.adventureframework.stats;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

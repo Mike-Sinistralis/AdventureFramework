@@ -1,6 +1,6 @@
-package com.adventureframework.Client;
+package com.adventureframework.client;
 
-import com.adventureframework.Common.ProxyCommon;
+import com.adventureframework.common.ProxyCommon;
 
 public class ProxyClient extends ProxyCommon
 {

@@ -1,4 +1,4 @@
-package com.adventureframework.Utils;
+package com.adventureframework.utils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.common.FMLCommonHandler;

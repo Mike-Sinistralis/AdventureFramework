@@ -1,7 +1,7 @@
-package com.adventureframework.Stats.Attributes;
+package com.adventureframework.stats.attributes;
 
-import com.adventureframework.Core.IConfigurable;
-import com.adventureframework.Core.Enums.AttributeCategory;
+import com.adventureframework.core.IConfigurable;
+import com.adventureframework.core.enums.AttributeCategory;
 
 import java.util.HashMap;
 import java.util.Map;

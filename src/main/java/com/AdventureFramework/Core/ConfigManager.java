@@ -1,4 +1,4 @@
-package com.adventureframework.Core;
+package com.adventureframework.core;
 
 import net.minecraftforge.common.config.Configuration;
 

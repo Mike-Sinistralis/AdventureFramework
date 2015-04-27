@@ -1,6 +1,6 @@
-package com.adventureframework.Core;
+package com.adventureframework.core;
 
-import com.adventureframework.Core.Enums.ConfigType;
+import com.adventureframework.core.enums.ConfigType;
 
 import java.util.HashMap;
 import java.util.Map;

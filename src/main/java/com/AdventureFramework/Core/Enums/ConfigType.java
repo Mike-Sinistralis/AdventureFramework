@@ -1,9 +1,9 @@
-package com.adventureframework.Core.Enums;
+package com.adventureframework.core.enums;
 
 public enum ConfigType {
-    ATTRIBUTES ("Attributes"),
+    ATTRIBUTES ("attributes"),
     EFFECTS ("Effects"),
-    STATS ("Stats");
+    STATS ("stats");
 
     private String friendlyName;
 

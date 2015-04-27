@@ -1,4 +1,4 @@
-package com.adventureframework.Common;
+package com.adventureframework.common;
 
 public class ProxyCommon {
 

@@ -1,4 +1,4 @@
-package com.adventureframework.Core.Exceptions;
+package com.adventureframework.core.exceptions;
 
 public class AttributeAlreadyExistsException extends RuntimeException {
 

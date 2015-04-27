@@ -1,11 +1,11 @@
-package com.adventureframework.Core;
+package com.adventureframework.core;
 
-import com.adventureframework.Common.ProxyCommon;
-import com.adventureframework.Core.Enums.ConfigType;
-import com.adventureframework.Stats.Attributes.AttributeController;
-import com.adventureframework.Stats.StatsInterceptor;
-import com.adventureframework.Utils.FunctionUtils;
-import com.adventureframework.Content.Stats.StatLoader;
+import com.adventureframework.common.ProxyCommon;
+import com.adventureframework.core.enums.ConfigType;
+import com.adventureframework.stats.attributes.AttributeController;
+import com.adventureframework.stats.StatsInterceptor;
+import com.adventureframework.utils.FunctionUtils;
+import com.adventureframework.content.stats.StatLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
@@ -30,7 +30,7 @@ public class AdventureFramework
     public static final String MODNAME ="adventureframework";
     public static final String VERSION = "0.1";
 
-    @SidedProxy(clientSide = "com.adventureframework.Client.ProxyClient", serverSide = "com.adventureframework.Common.ProxyCommon")
+    @SidedProxy(clientSide = "com.adventureframework.client.ProxyClient", serverSide = "com.adventureframework.common.ProxyCommon")
     public static ProxyCommon proxy;
 
     @Instance(value = AdventureFramework.MODID)

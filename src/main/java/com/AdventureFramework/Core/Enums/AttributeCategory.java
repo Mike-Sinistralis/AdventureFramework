@@ -1,4 +1,4 @@
-package com.adventureframework.Core.Enums;
+package com.adventureframework.core.enums;
 
 public enum AttributeCategory {
     PRIMARY ("Primary"),
