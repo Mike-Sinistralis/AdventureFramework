@@ -104,7 +104,7 @@ public class Attribute implements IConfigurable {
         Map<String, AdventureConfigurable> config = new HashMap<>();
 
         config.put("Description",new AdventureConfigurable().setConfigValue(description).setDescription("Describes what the attribute does. Primarily used in tooltips."));
-        config.put("Enabled",new AdventureConfigurable().setConfigValue(isEnabled).setDescription("Determines if this attribute should be loaded. Requires a server restart to function. Removing this will have unexpected consequences on gear and is highly recommended to not change once you have the initial server configurations setup. The system will try to just delete the property from gear, but issues may occur."));
+        config.put("Enabled",new AdventureConfigurable().setConfigValue(isEnabled).setDescription("Determines if this attribute should be loaded. If enabled on a server that already has gear and abilities allocated with this attribute, THEY WILL NOT BE REFUNDED. The system will simply ignore them. Re-enabling this will restore the data fine."));
         config.put("Weight",new AdventureConfigurable().setConfigValue(attributeWeight).setDescription("The weight per point of this attribute when assigning properties to gear. Higher weight means this attribute appears on gear with lower values, or less combinations."));
         config.put("Category",new AdventureConfigurable().setConfigValue(category).setDescription("The category this attribute is calculated against when determining which properties to apply on gear."));
 

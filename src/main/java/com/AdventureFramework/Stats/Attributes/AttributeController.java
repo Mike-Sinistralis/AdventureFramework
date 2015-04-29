@@ -52,11 +52,7 @@ public class AttributeController extends AdventureController{
         {
             readControllerData(config, attribute.getName(), attribute);
             writeControllerData(config, attribute.getName(), attribute);
-
-            if(attribute.isEnabled())
-            {
-                loadedAttributes.put(attribute.getName(), attribute);
-            }
+            loadedAttributes.put(attribute.getName(), attribute);
         }
 
         stagedAttributes.clear();
