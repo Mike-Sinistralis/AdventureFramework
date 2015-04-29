@@ -4,7 +4,6 @@ import com.adventureframework.core.AdventureController;
 import com.adventureframework.core.AdventureFramework;
 import com.adventureframework.core.enums.ConfigType;
 import com.adventureframework.core.exceptions.AttributeAlreadyExistsException;
-import net.minecraftforge.common.config.ConfigCategory;
 import net.minecraftforge.common.config.Configuration;
 
 import java.util.HashMap;
@@ -23,7 +22,7 @@ public class AttributeController extends AdventureController{
         }
         else
         {
-            throw new AttributeAlreadyExistsException();
+            throw new AttributeAlreadyExistsException("Attributes must be uniquely named! Attribute " + attr.getName() + " already exists!");
         }
     }
 
@@ -54,12 +53,13 @@ public class AttributeController extends AdventureController{
             readControllerData(config, attribute.getName(), attribute);
             writeControllerData(config, attribute.getName(), attribute);
 
-            loadedAttributes.put(attribute.getName(), attribute);
+            if(attribute.isEnabled())
+            {
+                loadedAttributes.put(attribute.getName(), attribute);
+            }
         }
 
         stagedAttributes.clear();
-
-        config.addCustomCategoryComment("armor", "Explanation about each field goes here");
 
         config.save();
     }
@@ -68,7 +68,6 @@ public class AttributeController extends AdventureController{
     {
         String configName = ConfigType.STATS.getFriendlyName();
         Configuration config = AdventureFramework.configManager.getConfigByName(configName);
-        ConfigCategory masterCategory = config.getCategory(ConfigType.ATTRIBUTES.getConfigName());
 
         config.load();
 

@@ -30,12 +30,12 @@ public abstract class AdventureController {
 
     protected void writeControllerData(Configuration config, String propertyName, IConfigurable loadable)
     {
-        Map<String,String> attributeProperties = loadable.writeConfig();
+        Map<String,AdventureConfigurable> attributeProperties = loadable.writeConfig();
         String configPropertyName = propertyName.toLowerCase();
 
-        for(Map.Entry<String,String> property : attributeProperties.entrySet())
+        for(Map.Entry<String,AdventureConfigurable> property : attributeProperties.entrySet())
         {
-            config.get(configPropertyName, property.getKey(), property.getValue());
+            config.get(configPropertyName, property.getKey(), property.getValue().getConfigValue(), property.getValue().getDescription());
         }
     }
 }

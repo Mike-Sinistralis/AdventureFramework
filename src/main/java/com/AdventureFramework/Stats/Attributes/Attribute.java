@@ -1,5 +1,6 @@
 package com.adventureframework.stats.attributes;
 
+import com.adventureframework.core.AdventureConfigurable;
 import com.adventureframework.core.IConfigurable;
 import com.adventureframework.core.enums.AttributeCategory;
 
@@ -98,14 +99,14 @@ public class Attribute implements IConfigurable {
         return currentTotalValue;
     }
 
-    public Map<String, String> writeConfig()
+    public Map<String, AdventureConfigurable> writeConfig()
     {
-        Map<String, String> config = new HashMap<>();
+        Map<String, AdventureConfigurable> config = new HashMap<>();
 
-        config.put("Description",description);
-        config.put("Enabled", isEnabled.toString());
-        config.put("Weight", attributeWeight.toString());
-        config.put("Category", category.getFriendlyName());
+        config.put("Description",new AdventureConfigurable().setConfigValue(description).setDescription("Describes what the attribute does. Primarily used in tooltips."));
+        config.put("Enabled",new AdventureConfigurable().setConfigValue(isEnabled).setDescription("Determines if this attribute should be loaded. Requires a server restart to function. Removing this will have unexpected consequences on gear and is highly recommended to not change once you have the initial server configurations setup. The system will try to just delete the property from gear, but issues may occur."));
+        config.put("Weight",new AdventureConfigurable().setConfigValue(attributeWeight).setDescription("The weight per point of this attribute when assigning properties to gear. Higher weight means this attribute appears on gear with lower values, or less combinations."));
+        config.put("Category",new AdventureConfigurable().setConfigValue(category).setDescription("The category this attribute is calculated against when determining which properties to apply on gear."));
 
         return config;
     }
