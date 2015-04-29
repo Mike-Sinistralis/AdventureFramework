@@ -104,7 +104,7 @@ public class Attribute implements IConfigurable {
         Map<String, AdventureConfigurable> config = new HashMap<>();
 
         config.put("Description",new AdventureConfigurable().setConfigValue(description).setDescription("Describes what the attribute does. Primarily used in tooltips."));
-        config.put("Enabled",new AdventureConfigurable().setConfigValue(isEnabled).setDescription("Determines if this attribute should be loaded. If enabled on a server that already has gear and abilities allocated with this attribute, THEY WILL NOT BE REFUNDED. The system will simply ignore them. Re-enabling this will restore the data fine."));
+        config.put("Enabled",new AdventureConfigurable().setConfigValue(isEnabled).setDescription("Determines if this attribute should be loaded. If enabled on a server that already has gear and abilities allocated with this attribute, THEY WILL NOT BE REFUNDED. Points can be recovered with reincarnation. There will be an Admin only method of reincarnating a soul without penalty to assist with migrations. Note that any existing gear with this attribute will simply have that property permanantly deleted. If you are on an existing server, make sure you have a plan before disabling attributes that have been in use."));
         config.put("Weight",new AdventureConfigurable().setConfigValue(attributeWeight).setDescription("The weight per point of this attribute when assigning properties to gear. Higher weight means this attribute appears on gear with lower values, or less combinations."));
         config.put("Category",new AdventureConfigurable().setConfigValue(category).setDescription("The category this attribute is calculated against when determining which properties to apply on gear."));
 
