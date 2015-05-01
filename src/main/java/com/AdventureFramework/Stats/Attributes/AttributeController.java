@@ -11,51 +11,40 @@ import java.util.Map;
 
 public class AttributeController extends AdventureController{
 
-    private Map<String, Attribute> loadedAttributes = new HashMap<>();
-    private Map<String, Attribute> stagedAttributes = new HashMap<>();
+    private Map<String, AttributeFactory> loadedAttributeFactories = new HashMap<>();
+    private Map<String, AttributeFactory> stagedAttributeFactories = new HashMap<>();
 
-    public void stageAttribute(Attribute attr)
+    public void stageAttributeFactory(AttributeFactory attributeFactory)
     {
-        if(loadedAttributes.get(attr.getName()) == null)
+        if(loadedAttributeFactories.get(attributeFactory.getName()) == null)
         {
-            stagedAttributes.put(attr.getName(), attr);
+            stagedAttributeFactories.put(attributeFactory.getName(), attributeFactory);
         }
         else
         {
-            throw new AttributeAlreadyExistsException("Attributes must be uniquely named! Attribute " + attr.getName() + " already exists!");
+            throw new AttributeAlreadyExistsException("Attributes must be uniquely named! Attribute " + attributeFactory.getName() + " already exists!");
         }
     }
 
-    public Attribute getNewAttributeByName(String key)
+    public AttributeFactory[] getKnownAttributeFactories()
     {
-        Attribute returnAttribute = null;
-
-        if(loadedAttributes.get(key) != null)
-        {
-            returnAttribute = Attribute.cloneStructure(loadedAttributes.get(key));
-        }
-        return returnAttribute;
+        return (AttributeFactory[]) loadedAttributeFactories.values().toArray();
     }
 
-    public Attribute[] getKnownAttributes()
-    {
-        return (Attribute[]) loadedAttributes.values().toArray();
-    }
-
-    public void loadStagedAttributes()
+    public void loadStagedAttributeFactories()
     {
         Configuration config = AdventureFramework.configManager.getConfigByName(ConfigType.STATS.getFriendlyName());
 
         config.load();
 
-        for(Attribute attribute : stagedAttributes.values())
+        for(AttributeFactory factory : stagedAttributeFactories.values())
         {
-            readControllerData(config, attribute.getName(), attribute);
-            writeControllerData(config, attribute.getName(), attribute);
-            loadedAttributes.put(attribute.getName(), attribute);
+            readControllerData(config, factory.getName(), factory);
+            writeControllerData(config, factory.getName(), factory);
+            loadedAttributeFactories.put(factory.getName(), factory);
         }
 
-        stagedAttributes.clear();
+        stagedAttributeFactories.clear();
 
         config.save();
     }
@@ -67,9 +56,9 @@ public class AttributeController extends AdventureController{
 
         config.load();
 
-        for(Attribute attribute : stagedAttributes.values())
+        for(AttributeFactory factory : stagedAttributeFactories.values())
         {
-            readControllerData(config, attribute.getName(), attribute);
+            readControllerData(config, factory.getName(), factory);
         }
     }
 }

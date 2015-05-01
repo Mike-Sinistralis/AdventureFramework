@@ -37,21 +37,22 @@ public class AdventureFramework
     public static AdventureFramework instance;
 
     public static ConfigManager configManager;
+    public static AttributeController attributeController;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
         File AFDirectory;
-        AttributeController attributeController = new AttributeController();
+        attributeController = new AttributeController();
 
         AFDirectory = new File(FunctionUtils.getBaseDir(), "/adventureframework");
         configManager = new ConfigManager(AFDirectory);
 
         ControllerManager.registerControllerByName(ConfigType.ATTRIBUTES.name(), attributeController);
 
-        StatLoader.stageAttributes(attributeController);
+        StatLoader.stageAttributeFactories(attributeController);
 
-        attributeController.loadStagedAttributes();
+        attributeController.loadStagedAttributeFactories();
 
         proxy.preInit(event);
     }

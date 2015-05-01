@@ -1,25 +1,25 @@
 package com.adventureframework.content.stats;
 
 import com.adventureframework.core.enums.AttributeCategory;
-import com.adventureframework.stats.attributes.Attribute;
 import com.adventureframework.stats.attributes.AttributeController;
-import com.adventureframework.stats.attributes.DiminishingAttribute;
-import com.adventureframework.stats.attributes.ResourceAttribute;
+import com.adventureframework.stats.attributes.AttributeFactory;
+import com.adventureframework.stats.attributes.DiminishingAttributeFactory;
+import com.adventureframework.stats.attributes.ResourceAttributeFactory;
 
 public class StatLoader {
 
-        public static void stageAttributes(AttributeController attributeController)
+        public static void stageAttributeFactories(AttributeController attributeController)
         {
-            ResourceAttribute health = (ResourceAttribute)new ResourceAttribute().setName("Health").setDescription("The amount of damage you can take until you die").setAttributeWeight(1).setCategory(AttributeCategory.PRIMARY).setEnabled(true);
+            ResourceAttributeFactory health = new ResourceAttributeFactory("Health", "The amount of damage you can take until you die", true, 1, AttributeCategory.PRIMARY, 20, .02);
 
-            attributeController.stageAttribute(health);
+            attributeController.stageAttributeFactory(health);
 
-            Attribute power = new Attribute().setName("Power").setDescription("Increases the amount of damage dealt with physical attacks.").setAttributeWeight(2).setCategory(AttributeCategory.PRIMARY).setEnabled(true);
+            AttributeFactory power = new AttributeFactory("Power", "Increases the amount of damage you deal with physical attacks", true, 2, AttributeCategory.PRIMARY, 1);
 
-            attributeController.stageAttribute(power);
+            attributeController.stageAttributeFactory(power);
 
-            DiminishingAttribute armor = (DiminishingAttribute)new DiminishingAttribute().setName("Armor").setDescription("Decreases the amount of damage recieved from physical attacks").setAttributeWeight(1).setCategory(AttributeCategory.PRIMARY).setEnabled(true);
+            DiminishingAttributeFactory armor = new DiminishingAttributeFactory("Armor", "Decreases the amount of damage received from physical attacks", true, 1, AttributeCategory.PRIMARY, 0);
 
-            attributeController.stageAttribute(armor);
+            attributeController.stageAttributeFactory(armor);
         }
 }

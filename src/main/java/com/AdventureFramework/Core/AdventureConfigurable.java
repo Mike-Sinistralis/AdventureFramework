@@ -39,5 +39,4 @@ public class AdventureConfigurable {
         this.description = description;
         return this;
     }
-
 }
