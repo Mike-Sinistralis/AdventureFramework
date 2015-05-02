@@ -6,6 +6,7 @@ import com.adventureframework.core.enums.AttributeCategory;
 import com.adventureframework.core.exceptions.InvalidAttributeConfigurationException;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -35,7 +36,7 @@ public class AttributeFactory implements IConfigurable {
         private String attrName;
         private int baseValue = 0;
         private int flatModifier = 0;
-        private double multiplicativeModifier = 1;
+        private float multiplicativeModifier = 1;
 
         protected Attribute(String name, Integer baseAmount)
         {
@@ -50,7 +51,7 @@ public class AttributeFactory implements IConfigurable {
             return result >= 0 ? result : 0;
         }
 
-        public void alterBaseValue(double amount) {
+        public void alterBaseValue(float amount) {
             baseValue += amount;
             currentTotalValue = calculateTotalValue();
         }
@@ -60,7 +61,7 @@ public class AttributeFactory implements IConfigurable {
             currentTotalValue = calculateTotalValue();
         }
 
-        public void alterMultiplicativeModifier(double amount) {
+        public void alterMultiplicativeModifier(float amount) {
             multiplicativeModifier += amount;
             currentTotalValue = calculateTotalValue();
         }
@@ -127,15 +128,43 @@ public class AttributeFactory implements IConfigurable {
     }
 
     public void loadConfig(Map<String, String> attributeConfig) {
-        try {
-            description = attributeConfig.get("Description");
-            isEnabled = Boolean.valueOf(attributeConfig.get("Enabled"));
-            weight = Integer.parseInt(attributeConfig.get("Weight"));
-            category = AttributeCategory.valueOf(attributeConfig.get("Category").toUpperCase());
-            baseAmount = Integer.parseInt(attributeConfig.get("Starting Amount").toUpperCase());
-        } catch (Exception e) {
-            throw new InvalidAttributeConfigurationException(e.getMessage());
-        }
+        safeConfig(attributeConfig.entrySet().iterator());
+    }
 
+    protected Iterator<Map.Entry<String, String>> safeConfig(Iterator<Map.Entry<String, String>> attributeConfig)
+    {
+        try {
+            while(attributeConfig.hasNext()) {
+                Map.Entry<String, String> attributeEntry = attributeConfig.next();
+                boolean remove = true;
+
+                switch (attributeEntry.getKey()) {
+                    case "Description":
+                        description = attributeEntry.getValue();
+                        break;
+                    case "Enabled":
+                        isEnabled = Boolean.valueOf(attributeEntry.getValue());
+                        break;
+                    case "Weight":
+                        weight = Integer.parseInt(attributeEntry.getValue());
+                        break;
+                    case "Category":
+                        category = AttributeCategory.valueOf(attributeEntry.getValue().toUpperCase());
+                        break;
+                    case "Starting Amount":
+                        baseAmount = Integer.parseInt(attributeEntry.getValue().toUpperCase());
+                        break;
+                    default:
+                        remove = false;
+                        break;
+                }
+                if (remove)
+                    attributeConfig.remove();
+            }
+        }
+        catch (Exception e) {
+            throw new InvalidAttributeConfigurationException(e.getCause() + e.getMessage());
+        }
+        return attributeConfig;
     }
 }

@@ -4,6 +4,7 @@ import com.adventureframework.core.AdventureConfigurable;
 import com.adventureframework.core.enums.AttributeCategory;
 import com.adventureframework.core.exceptions.InvalidAttributeConfigurationException;
 
+import java.util.Iterator;
 import java.util.Map;
 
 public class ResourceAttributeFactory extends AttributeFactory {
@@ -75,12 +76,24 @@ public class ResourceAttributeFactory extends AttributeFactory {
     }
 
     @Override
-    public void loadConfig(Map<String, String> attributeConfig) {
-        super.loadConfig(attributeConfig);
+    protected Iterator<Map.Entry<String, String>> safeConfig(Iterator<Map.Entry<String, String>> attributeConfig)
+    {
+        Iterator<Map.Entry<String, String>> mutatedConfig = super.safeConfig(attributeConfig);
         try {
-            baseRegen = Double.parseDouble(attributeConfig.get("Regeneration"));
-        } catch (Exception e) {
+            while(mutatedConfig.hasNext()) {
+                Map.Entry<String, String> attributeEntry = attributeConfig.next();
+
+                switch (attributeEntry.getKey()) {
+                    case "Regeneration":
+                        baseRegen = Double.parseDouble(attributeEntry.getValue());
+                        break;
+                }
+                attributeConfig.remove();
+            }
+        }
+        catch (Exception e) {
             throw new InvalidAttributeConfigurationException(e.getMessage());
         }
+        return attributeConfig;
     }
 }
