@@ -5,6 +5,9 @@ import com.adventureframework.core.enums.ConfigType;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A utility class that manages all controllers, and creates a simple place to reference them as needed.
+ */
 public class ControllerManager {
 
     private static Map<String, AdventureController> controllers= new HashMap<>();

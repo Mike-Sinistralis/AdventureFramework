@@ -10,12 +10,18 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * A controller that handles overlay events and handling custom overlays.
+ */
 public class OverlayController extends AdventureController {
 
     private Map<String, Draggable> AdventureOverlays = new HashMap<>();
 
     private Minecraft mc;
 
+    /**
+     * Prepares all the default overlays within Adventure Framework for rendering.
+     */
     public void init()
     {
         mc = Minecraft.getMinecraft();
@@ -24,6 +30,11 @@ public class OverlayController extends AdventureController {
         AdventureOverlays.put(RenderGameOverlayEvent.ElementType.HEALTH.name(), health);
     }
 
+    /**
+     * Allows overridding overlays with custom made ones.
+     * @param overlayToOverwrite Which overlay to overwrite.
+     * @param draggable The overlay to overwrite with.
+     */
     public void loadDraggable(RenderGameOverlayEvent.ElementType overlayToOverwrite, Draggable draggable)
     {
         if(AdventureOverlays.containsKey(overlayToOverwrite.name()))
@@ -35,7 +46,7 @@ public class OverlayController extends AdventureController {
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void beforeOverlayRender(RenderGameOverlayEvent.Pre event)
+    private void beforeOverlayRender(RenderGameOverlayEvent.Pre event)
     {
         RenderGameOverlayEvent.ElementType overlay = event.type;
 

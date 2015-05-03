@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class StatsInterceptor
 {
     @SubscribeEvent
-    public void interceptHurtEvent(LivingHurtEvent event)
+    private void interceptHurtEvent(LivingHurtEvent event)
     {
         if(!(event.entityLiving instanceof EntityPlayer))
             return;
@@ -22,13 +22,13 @@ public class StatsInterceptor
     }
 
     @SubscribeEvent
-    public void onEntityConstructing(EntityEvent.EntityConstructing event)
+    private void onEntityConstructing(EntityEvent.EntityConstructing event)
     {
 
     }
 
     @SubscribeEvent
-    public void onEntityUpdate(LivingEvent.LivingUpdateEvent event)
+    private void onEntityUpdate(LivingEvent.LivingUpdateEvent event)
     {
         EntityLivingBase derp = event.entityLiving;
     }

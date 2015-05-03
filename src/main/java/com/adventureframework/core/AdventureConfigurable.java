@@ -2,6 +2,9 @@ package com.adventureframework.core;
 
 import com.adventureframework.core.enums.AttributeCategory;
 
+/**
+ * A little utility class that assists with creating configuration data for Adventure Controllers.
+ */
 public class AdventureConfigurable {
 
     private String configValue;
