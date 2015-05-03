@@ -32,14 +32,4 @@ public class StatsInterceptor
     {
         EntityLivingBase derp = event.entityLiving;
     }
-
-
-    @SubscribeEvent
-    public void onOptionMenuShow(GuiOpenEvent event)
-    {
-        if(event.gui instanceof GuiIngameMenu)
-        {
-            event.gui = new AdventureMenu();
-        }
-    }
 }

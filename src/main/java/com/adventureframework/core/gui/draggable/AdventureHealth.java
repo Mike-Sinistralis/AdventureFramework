@@ -12,7 +12,6 @@ public class AdventureHealth extends Draggable {
     public AdventureHealth(Minecraft mc, RenderGameOverlayEvent.ElementType element)
     {
         super(mc, element);
-        this.dragTo(2, 2);
     }
 
     @Override
@@ -24,6 +23,6 @@ public class AdventureHealth extends Draggable {
         this.mc.getTextureManager().bindTexture(HEALTHBAR);
 
         this.drawTexturedModalRect(
-                this.anchorX, this.anchorY, 0, 0, 130, 20);
+                this.anchorX, this.anchorY, 0, 0, 131, 20);
     }
 }
