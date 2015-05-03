@@ -1,18 +1,12 @@
-package com.adventureframework.core.gui;
+package com.adventureframework.core.gui.locked;
 
 import com.adventureframework.core.gui.locked.UIPositioner;
 import net.minecraft.client.gui.*;
-import net.minecraft.client.gui.achievement.GuiAchievements;
-import net.minecraft.client.gui.achievement.GuiStats;
-import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.resources.I18n;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.io.IOException;
 import java.util.Iterator;
 
-@SideOnly(Side.CLIENT)
 public class AdventureMenu extends GuiIngameMenu {
 
     private int buttonId = 20;

@@ -2,6 +2,7 @@ package com.adventureframework.core;
 
 import com.adventureframework.common.ProxyCommon;
 import com.adventureframework.core.enums.ConfigType;
+import com.adventureframework.core.gui.AdventureOverlay;
 import com.adventureframework.stats.attributes.AttributeController;
 import com.adventureframework.stats.StatsInterceptor;
 import com.adventureframework.utils.FunctionUtils;
@@ -61,6 +62,7 @@ public class AdventureFramework
     public void init(FMLInitializationEvent event)
     {
         FMLCommonHandler.instance().bus().register(instance);
+        MinecraftForge.EVENT_BUS.register(new AdventureOverlay());
         MinecraftForge.EVENT_BUS.register(new StatsInterceptor());
         FMLCommonHandler.instance().bus().register(new StatsInterceptor());
 
