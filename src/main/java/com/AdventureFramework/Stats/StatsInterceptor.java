@@ -1,7 +1,12 @@
 package com.adventureframework.stats;
 
+import com.adventureframework.core.gui.AdventureMenu;
+import net.minecraft.client.gui.GuiIngameMenu;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.client.event.GuiOpenEvent;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -30,4 +35,24 @@ public class StatsInterceptor
         EntityLivingBase derp = event.entityLiving;
     }
 
+
+    @SubscribeEvent
+    public void gui(RenderGameOverlayEvent event)
+    {
+        RenderGameOverlayEvent.ElementType derp = event.type;
+
+        if(derp == RenderGameOverlayEvent.ElementType.HEALTH)
+        {
+            event.setCanceled(true);
+        }
+    }
+
+    @SubscribeEvent
+    public void onOptionMenuShow(GuiOpenEvent event)
+    {
+        if(event.gui instanceof GuiIngameMenu)
+        {
+            event.gui = new AdventureMenu();
+        }
+    }
 }
