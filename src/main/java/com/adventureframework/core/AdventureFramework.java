@@ -28,7 +28,7 @@ public class AdventureFramework
     private static Logger logger = LogManager.getLogger("adventureframework");
 
     public static final String MODID = "adventureframework";
-    public static final String MODNAME ="adventureframework";
+    public static final String MODNAME ="Adventure Framework";
     public static final String VERSION = "0.11";
 
     @SidedProxy(clientSide = "com.adventureframework.client.ProxyClient", serverSide = "com.adventureframework.common.ProxyCommon")

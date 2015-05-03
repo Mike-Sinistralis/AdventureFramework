@@ -1,6 +1,6 @@
 [
 {
-  "modid": "AdventureFramework",
+  "modid": "adventureframework",
   "name": "Adventure Framework",
   "description": "A set of tools to assist in creating complex RPG rules in Minecraft.",
   "version": "${version}",
