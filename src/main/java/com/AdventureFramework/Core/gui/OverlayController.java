@@ -4,6 +4,7 @@ import com.adventureframework.core.AdventureController;
 import com.adventureframework.core.gui.draggable.AdventureHealth;
 import com.adventureframework.core.gui.draggable.Draggable;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -14,10 +15,11 @@ import java.util.HashMap;
 public class OverlayController extends AdventureController {
 
     private Map<String, Draggable> AdventureOverlays = new HashMap<>();
+    private Minecraft mc;
 
     public void init()
     {
-        Minecraft mc = Minecraft.getMinecraft();
+        mc = Minecraft.getMinecraft();
         AdventureHealth health = new AdventureHealth(mc, RenderGameOverlayEvent.ElementType.HEALTH);
 
         AdventureOverlays.put(RenderGameOverlayEvent.ElementType.HEALTH.name(), health);
@@ -29,7 +31,7 @@ public class OverlayController extends AdventureController {
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
-    public void gui(RenderGameOverlayEvent event)
+    public void gui(RenderGameOverlayEvent.Pre event)
     {
         RenderGameOverlayEvent.ElementType overlay = event.type;
 
@@ -37,6 +39,7 @@ public class OverlayController extends AdventureController {
         {
             AdventureOverlays.get(event.type.name()).render();
             event.setCanceled(true);
+            mc.getTextureManager().bindTexture(Gui.icons);
         }
     }
 }

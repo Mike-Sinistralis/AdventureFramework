@@ -9,8 +9,8 @@ public abstract class Draggable extends Gui {
     protected Minecraft mc;
     private RenderGameOverlayEvent.ElementType elementType;
     private boolean isDragged = false;
-    private int anchorX;
-    private int anchorY;
+    protected int anchorX;
+    protected int anchorY;
 
     public Draggable(Minecraft mc, RenderGameOverlayEvent.ElementType element)
     {
