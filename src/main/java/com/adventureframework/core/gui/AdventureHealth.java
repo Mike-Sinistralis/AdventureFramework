@@ -1,11 +1,11 @@
-package com.adventureframework.core.gui.draggable;
+package com.adventureframework.core.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import org.lwjgl.opengl.GL11;
 
-public class AdventureHealth extends Draggable {
+class AdventureHealth extends Draggable {
 
     private static final ResourceLocation HEALTHBAR = new ResourceLocation("adventureframework","textures/gui/healthbar.png");
 

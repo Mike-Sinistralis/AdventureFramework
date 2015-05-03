@@ -1,13 +1,12 @@
-package com.adventureframework.core.gui.locked;
+package com.adventureframework.core.gui;
 
-import com.adventureframework.core.gui.locked.UIPositioner;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.resources.I18n;
 
 import java.io.IOException;
 import java.util.Iterator;
 
-public class AdventureMenu extends GuiIngameMenu {
+class AdventureMenu extends GuiIngameMenu {
 
     private int buttonId = 20;
 

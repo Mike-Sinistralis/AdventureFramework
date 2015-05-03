@@ -5,7 +5,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IExtendedEntityProperties;
 
-public class AdventureAttributes implements IExtendedEntityProperties
+class AdventureAttributes implements IExtendedEntityProperties
 {
     public final static String extendedPropertiesName = "AdventureAttributes";
     protected Entity theEntity;

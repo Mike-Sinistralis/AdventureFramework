@@ -1,10 +1,10 @@
-package com.adventureframework.core.gui.draggable;
+package com.adventureframework.core.gui;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 
-public abstract class Draggable extends Gui {
+abstract class Draggable extends Gui {
 
     protected Minecraft mc;
     private RenderGameOverlayEvent.ElementType elementType;

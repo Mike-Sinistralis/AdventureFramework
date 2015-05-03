@@ -1,6 +1,6 @@
-package com.adventureframework.core.gui.locked;
+package com.adventureframework.core.gui;
 
-public class UIPositioner extends LockedGui {
+class UIPositioner extends LockedGui {
 
     public void initGui()
     {

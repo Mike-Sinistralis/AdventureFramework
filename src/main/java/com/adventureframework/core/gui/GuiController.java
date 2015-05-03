@@ -1,7 +1,6 @@
 package com.adventureframework.core.gui;
 
 import com.adventureframework.core.AdventureController;
-import com.adventureframework.core.gui.locked.AdventureMenu;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;

@@ -47,15 +47,20 @@ public class ResourceAttributeFactory extends AttributeFactory {
         public double getTotalRegen() {
             return totalRegen;
         }
-
-        //TODO Add Ability Arguement, this should call deplete if true
-        public boolean canUse() {
-            return false;
-        }
     }
 
-    public ResourceAttributeFactory(String name, String description, Boolean isEnabled, Integer weight, AttributeCategory category, Integer baseAmount, double baseRegen) {
-        super(name, description, isEnabled, weight, category, baseAmount);
+    /**
+     * Returns a factory capable of producing attribute objects that are designed to deplete and restore based on a maximum value. These tend to deal with
+     * regeneration and consumption checks.
+     *
+     * @param name Name of the attribute. This must be unique, and is not configurable. Multiple AttributeFactories of the same name will throw an exception.
+     * @param description Description of the attribute, mostly used for tooltips.
+     * @param isEnabled Whether the attribute should be loaded and used in-game.
+     * @param baseAmount The starting amount of this attribute all entities start with before modifications.
+     * @param baseRegen The amount that attributes this factory creates regenerate every second before modification.
+     */
+    public ResourceAttributeFactory(String name, String description, Boolean isEnabled, Integer baseAmount, double baseRegen) {
+        super(name, description, isEnabled, baseAmount);
         this.baseRegen = baseRegen;
     }
 
@@ -66,6 +71,11 @@ public class ResourceAttributeFactory extends AttributeFactory {
         return newAttribute;
     }
 
+    /**
+     * Generates a data structure to be used by AdventureControllers to create config values so this attribute can be configured outside of the code base.
+     *
+     * @return A Hashmap of field:value/description entries to generate a config file from.
+     */
     @Override
     public Map<String, AdventureConfigurable> writeConfig() {
         Map<String, AdventureConfigurable> config = super.writeConfig();

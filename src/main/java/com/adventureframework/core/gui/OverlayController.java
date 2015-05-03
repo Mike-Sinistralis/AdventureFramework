@@ -1,19 +1,14 @@
 package com.adventureframework.core.gui;
 
 import com.adventureframework.core.AdventureController;
-import com.adventureframework.core.gui.draggable.AdventureHealth;
-import com.adventureframework.core.gui.draggable.Draggable;
-import com.adventureframework.core.gui.locked.AdventureMenu;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.client.gui.GuiIngameMenu;
-import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 public class OverlayController extends AdventureController {
 
