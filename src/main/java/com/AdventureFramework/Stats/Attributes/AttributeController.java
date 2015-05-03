@@ -9,7 +9,7 @@ import net.minecraftforge.common.config.Configuration;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AttributeController extends AdventureController{
+public class AttributeController extends AdventureController {
 
     private Map<String, AttributeFactory> loadedAttributeFactories = new HashMap<>();
     private Map<String, AttributeFactory> stagedAttributeFactories = new HashMap<>();
@@ -31,7 +31,8 @@ public class AttributeController extends AdventureController{
         return (AttributeFactory[]) loadedAttributeFactories.values().toArray();
     }
 
-    public void loadStagedAttributeFactories()
+    @Override
+    public void init()
     {
         Configuration config = AdventureFramework.configManager.getConfigByName(ConfigType.STATS.getFriendlyName());
 

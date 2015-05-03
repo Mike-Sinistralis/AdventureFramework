@@ -2,7 +2,7 @@ package com.adventureframework.core;
 
 import com.adventureframework.common.ProxyCommon;
 import com.adventureframework.core.enums.ConfigType;
-import com.adventureframework.core.gui.AdventureOverlay;
+import com.adventureframework.core.gui.OverlayController;
 import com.adventureframework.stats.attributes.AttributeController;
 import com.adventureframework.stats.StatsInterceptor;
 import com.adventureframework.utils.FunctionUtils;
@@ -38,31 +38,30 @@ public class AdventureFramework
     public static AdventureFramework instance;
 
     public static ConfigManager configManager;
-    public static AttributeController attributeController;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
         File AFDirectory;
-        attributeController = new AttributeController();
+        AttributeController attributeController = new AttributeController();
 
         AFDirectory = new File(FunctionUtils.getBaseDir(), "/adventureframework");
         configManager = new ConfigManager(AFDirectory);
 
-        ControllerManager.registerControllerByName(ConfigType.ATTRIBUTES.name(), attributeController);
+        ControllerManager.registerControllerByName(ConfigType.ATTRIBUTES, attributeController);
 
+        //TODO: Once we get more content, figure out a base class similar to controller manager
         StatLoader.stageAttributeFactories(attributeController);
 
-        attributeController.loadStagedAttributeFactories();
-
         proxy.preInit(event);
+
+        ControllerManager.init();
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
         FMLCommonHandler.instance().bus().register(instance);
-        MinecraftForge.EVENT_BUS.register(new AdventureOverlay());
         MinecraftForge.EVENT_BUS.register(new StatsInterceptor());
         FMLCommonHandler.instance().bus().register(new StatsInterceptor());
 

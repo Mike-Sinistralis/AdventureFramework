@@ -9,9 +9,9 @@ public class ControllerManager {
 
     private static Map<String, AdventureController> controllers= new HashMap<>();
 
-    public static void registerControllerByName(String name, AdventureController controller)
+    public static void registerControllerByName(ConfigType controllerName, AdventureController controller)
     {
-        controllers.put(name, controller);
+        controllers.put(controllerName.getFriendlyName(), controller);
     }
 
     public static AdventureController[] getControllers()
@@ -21,7 +21,15 @@ public class ControllerManager {
 
     public static AdventureController getControllerByName(ConfigType controllerName)
     {
-        return controllers.get(controllerName.name());
+        return controllers.get(controllerName.getFriendlyName());
+    }
+
+    public static void init()
+    {
+        for(AdventureController controller : controllers.values())
+        {
+            controller.init();
+        }
     }
 
 }

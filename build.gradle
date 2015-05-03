@@ -22,6 +22,7 @@ group= "com.adventureframework"
 archivesBaseName = "adventureframework"
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
+idea.module.inheritOutputDirs = true
 
 minecraft {
     version = "1.8-11.14.1.1334"

@@ -9,6 +9,11 @@ import java.util.Map;
 
 public abstract class AdventureController {
 
+    public void init()
+    {
+
+    }
+
     protected void readControllerData(Configuration config, String propertyName, IConfigurable loadable)
     {
         Map<String,String> propertiesToLoad = new HashMap<>();

@@ -3,6 +3,7 @@ package com.adventureframework.core.enums;
 public enum ConfigType {
     ATTRIBUTES ("attributes"),
     EFFECTS ("Effects"),
+    OVERLAY ("Overlay"),
     STATS ("stats");
 
     private String friendlyName;
