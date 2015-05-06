@@ -24,7 +24,7 @@ abstract class Draggable extends Gui {
         return elementType;
     }
 
-    public void render()
+    public void render(RenderGameOverlayEvent.Pre event)
     {
 
     }

@@ -15,7 +15,7 @@ class AdventureHealth extends Draggable {
     }
 
     @Override
-    public void render()
+    public void render(RenderGameOverlayEvent.Pre event)
     {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         GL11.glDisable(GL11.GL_LIGHTING);
@@ -23,6 +23,6 @@ class AdventureHealth extends Draggable {
         this.mc.getTextureManager().bindTexture(HEALTHBAR);
 
         this.drawTexturedModalRect(
-                100, 100, 0, 0, 106, 10);
+                event.resolution.getScaledWidth()/2 - 52, event.resolution.getScaledHeight()/2 - 5, 0, 0, 106, 10);
     }
 }

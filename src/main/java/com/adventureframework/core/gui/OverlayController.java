@@ -55,7 +55,7 @@ public class OverlayController extends AdventureController {
 
         if(AdventureOverlays.containsKey(event.type.name()) && !event.isCanceled())
         {
-            AdventureOverlays.get(event.type.name()).render();
+            AdventureOverlays.get(event.type.name()).render(event);
             event.setCanceled(true);
             mc.getTextureManager().bindTexture(Gui.icons);
         }
