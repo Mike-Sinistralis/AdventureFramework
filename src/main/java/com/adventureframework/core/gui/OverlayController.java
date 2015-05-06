@@ -6,6 +6,8 @@ import net.minecraft.client.gui.Gui;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +15,7 @@ import java.util.Map;
 /**
  * A controller that handles overlay events and handling custom overlays.
  */
+@SideOnly(Side.CLIENT)
 public class OverlayController extends AdventureController {
 
     private Map<String, Draggable> AdventureOverlays = new HashMap<>();
@@ -45,7 +48,7 @@ public class OverlayController extends AdventureController {
         AdventureOverlays.put(overlayToOverwrite.name(), draggable);
     }
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
+    @SubscribeEvent
     private void beforeOverlayRender(RenderGameOverlayEvent.Pre event)
     {
         RenderGameOverlayEvent.ElementType overlay = event.type;
