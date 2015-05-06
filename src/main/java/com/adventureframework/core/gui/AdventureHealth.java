@@ -23,6 +23,6 @@ class AdventureHealth extends Draggable {
         this.mc.getTextureManager().bindTexture(HEALTHBAR);
 
         this.drawTexturedModalRect(
-                this.anchorX, this.anchorY, 0, 0, 106, 10);
+                100, 100, 0, 0, 106, 10);
     }
 }

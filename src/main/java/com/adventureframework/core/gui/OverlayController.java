@@ -49,7 +49,7 @@ public class OverlayController extends AdventureController {
     }
 
     @SubscribeEvent
-    private void beforeOverlayRender(RenderGameOverlayEvent.Pre event)
+    public void beforeOverlayRender(RenderGameOverlayEvent.Pre event)
     {
         RenderGameOverlayEvent.ElementType overlay = event.type;
 

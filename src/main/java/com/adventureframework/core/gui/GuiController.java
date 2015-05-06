@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class GuiController extends AdventureController {
 
     @SubscribeEvent
-    private void onOptionMenuShow(GuiOpenEvent event)
+    public void onOptionMenuShow(GuiOpenEvent event)
     {
         if(event.gui instanceof GuiIngameMenu)
         {
